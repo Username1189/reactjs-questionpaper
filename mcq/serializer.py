@@ -4,4 +4,4 @@ from .models import *
 class ReactSerializer(serializers.ModelSerializer):
     class Meta:
         model = Question
-        fields = ['question_id', 'choices', 'ques_desc', 'correct_answers']
+        fields = ('question_id', 'choices', 'ques_desc', 'correct_answers', 'correct_points', 'wrong_points')

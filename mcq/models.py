@@ -18,6 +18,8 @@ class Question(models.Model):
     choices = models.ManyToManyField(Choice)
     ques_desc = models.CharField(max_length=500, null=False)
     correct_answers = models.ManyToManyField(Answer)
+    correct_points = models.IntegerField(default=1)
+    wrong_points = models.IntegerField(default=0)
 
     def __str__(self):
         return  str(self.question_id) + " - " + str(self.ques_desc)

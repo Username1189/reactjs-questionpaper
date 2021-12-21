@@ -6,12 +6,20 @@ from .serializer import *
   
 class ReactView(APIView):
     serializer_class = ReactSerializer
+
+    def get_choice(self, detail):
+        a = ""
+        for choice in detail.all():
+            a += str(choice) + " "
+        return a
   
     def get(self, request):
         detail = [ {"question_id": detail.question_id,
-            "choices": [str(a) for a in detail.choices.all()],
+            "choices": self.get_choice(detail.choices),
             "ques_desc": detail.ques_desc,
-            "correct_answers": [str(a) for a in detail.correct_answers.all()]}
+            "correct_answers": self.get_choice(detail.correct_answers),
+            "correct_points": detail.correct_points,
+            "wrong_points": detail.wrong_points }
             for detail in Question.objects.all()]
         return Response(detail)
   
