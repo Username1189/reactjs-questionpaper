@@ -1,1 +1,1 @@
-gunicorn questionpaper.wsgi
+hypercorn questionpaper.asgi:application
